@@ -1,0 +1,34 @@
+<?php
+
+/** @var Magento\Framework\View\Element\Template $block */
+/**@var Test\SiteNews\ViewModel\NewsList $newsViewModel */
+$newsViewModel = $block->getData('news_list_view_model');
+$newsCollection = $newsViewModel->getNewsCollection();
+?>
+<?php if ($newsCollection): ?>
+<div class="table-wrapper orders-history">
+    <table class="data table table-order-items history" id="my-orders-table">
+        <caption class="table-caption"><?php echo __('News list') ?></caption>
+        <thead>
+        <tr>
+            <th scope="col" class="col title"><?php echo __('Title') ?></th>
+            <th scope="col" class="col date"><?php echo __('Date') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+        foreach ($newsCollection as $item): ?>
+            <tr>
+                <td data-th="<?= $block->escapeHtml(__('Title')) ?>" class="col title">
+                    <?php echo $item->getTitle() ?>
+                </td>
+                <td data-th="<?= $block->escapeHtml(__('Date')) ?>"
+                    class="col date"><?php echo $item->getDate(); ?></td>
+            </tr>
+        <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php else: ?>
+<h3>We haven't news.</h3>
+<?php endif; ?>

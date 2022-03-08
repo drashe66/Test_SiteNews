@@ -1,0 +1,20 @@
+{
+    "name": "test/module-site-news",
+    "description": "Site News module",
+    "type": "magento2-module",
+    "config": {
+        "sort-packages": true
+    },
+    "version": "1.0.0",
+    "require": {
+        "php": "~7.3.0||~7.4.0"
+    },
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Test\\SiteNews\\": ""
+        }
+    }
+}

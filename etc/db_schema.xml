@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="news" resource="default" engine="innodb" comment="News table">
+        <column xsi:type="bigint" name="id" unsigned="true" nullable="false" identity="true" comment="News Item Id"/>
+        <column xsi:type="text" name="title" nullable="false" comment="Title"/>
+        <column xsi:type="smallint" name="status" unsigned="true" nullable="false" identity="false" default="0"
+                comment="Status"/>
+        <column xsi:type="datetime" name="date" on_update="false" nullable="false"
+                comment="News Item create time"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <index referenceId="NEWS_ITEM_STATUS" indexType="btree">
+            <column name="status"/>
+        </index>
+        <index referenceId="NEWS_ITEM_DATE" indexType="btree">
+            <column name="date"/>
+        </index>
+    </table>
+    <table name="news_stores" resource="default" engine="innodb" comment="News Stores table">
+        <column xsi:type="bigint" name="id" unsigned="true" nullable="false" identity="true"
+                comment="News Item Stores Id"/>
+        <column xsi:type="bigint" name="news_item_id" unsigned="true" nullable="false" identity="false"
+                default="0" comment="News Item Id"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="true" identity="false"
+                default="0" comment="Store Id"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+        <constraint xsi:type="foreign" referenceId="NEWS_STORES_NEWS_ITEM_ID_NEWS_ID" table="news_stores"
+                    column="news_item_id" referenceTable="news" referenceColumn="id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="NEWS_STORES_STORE_ID_STORE_STORE_ID" table="news_stores"
+                    column="store_id" referenceTable="store" referenceColumn="store_id" onDelete="SET NULL"/>
+    </table>
+</schema>

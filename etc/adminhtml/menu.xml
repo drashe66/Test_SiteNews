@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Test_SiteNews::site_news" title="Site News" module="Test_SiteNews" sortOrder="51" resource="Test_SiteNews::site_news"/>
+        <add id="Test_SiteNews::add_item" title="Add Item" module="Test_SiteNews" sortOrder="10"
+             action="sitenews/news/add" parent="Test_SiteNews::site_news" resource="Test_SiteNews::add_item"/>
+        <add id="Test_SiteNews::news_list" title="News List" module="Test_SiteNews" sortOrder="20"
+             action="sitenews/news" parent="Test_SiteNews::site_news" resource="Test_SiteNews::news_list"/>
+        <add id="Test_SiteNews::settings" title="Settings" module="Test_SiteNews" sortOrder="30"
+             action="adminhtml/system_config/edit/section/site_news" parent="Test_SiteNews::site_news" resource="Test_SiteNews::settings"/>
+    </menu>
+</config>
